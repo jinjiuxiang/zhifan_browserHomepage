@@ -1,28 +1,24 @@
 <template>
-  <div class="home-container">
-    <div class="pc-home-container">
-      <div class="pc-home-header">
-        <span>登录</span>
-        <span>注册</span>
+  <div class="mb-home-container">
+    <img class="mb-home-image" src="../assets/image/logoDesc.svg" alt="">
+    <div class="mb-home-search">
+      <select name="" id="">
+        <option value="全币种">全币种</option>
+        <option value="BTC">BTC</option>
+        <option value="BCH">BCH</option>
+        <option value="CTC">CTC</option>
+      </select>
+      <input type="text" placeholder="区块高度/区块哈希值/交易哈希值/地址哈希值">
+      <div class="mb-home-search-btn">
+        <img src="../assets/image/search.svg" alt="">
       </div>
-      <div class="pc-home-main">
-        <div>
-          <div class="pc-home-image">
-            <img src="../assets/image/logoDesc.svg" alt="">
-          </div>
-          <div class="pc-home-search">
-            <select name="" id="" v-model="selectData">
-              <option value="全币种">全币种</option>
-              <option value="BTC">BTC</option>
-              <option value="BCH">BCH</option>
-              <option value="CTC">CTC</option>
-            </select>
-            <input type="text" v-model="searchValue" placeholder="区块高度/区块哈希值/交易哈希值/地址哈希值">
-            <img src="../assets/image/search.svg" @click="getSearch" alt="">
-          </div>
+    </div>
+    <div class="mb-home-footer">
+        <div class="mb-home-footer-first">
+          <span @touchend="getUS">关于我们</span>
+          <span @touchend="getMz">免责声明</span>
         </div>
-        <img class="bottom-image" src="../assets/image/bottom.svg" alt="">
-      </div>
+        <p class="mb-home-footer-second">Copyright © 2017-2018  京ICP备17074962号</p>
     </div>
   </div>
 </template>
@@ -33,63 +29,38 @@
         data(){
           return {
             message:"zhe",
-            selectData:"全币种",
-            searchValue:"",
           }
         },
         methods:{
-          getSearch(){
-            const self  = this;
-            console.log(self.selectData);
-            console.log(self.searchValue);
-            if(self.searchValue == ""){
-              self.$message.error("搜索内容不能为空")
-            } else if(self.selectData != "全币种"){
-              window.location.href = "http://www.baidu.com"
-            }else {
-              self.$router.push({name:"searchList",params:{searchWord:self.searchValue}})
-            }
+          getUS(){
+            window.location.href = "https://www.chaindigg.com/"
+          },
+          getMz(){
+            window.location.href = "https://www.chaindigg.com/disclaimer"
           }
+
         }
     }
 </script>
 
 <style scoped>
-  .pc-home-header{
-    height: 3.75em;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  .pc-home-header span{
-    opacity: 0.8;
-    font-family: PingFangSC-Regular;
-    font-size: 1rem;
-    color: #333333;
-    line-height: 1rem;
-    margin-right: 2.5rem;
-  }
-  .pc-home-main{
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    overflow: auto;
-    justify-content: space-between;
-  }
-  .pc-home-search{
-    width: 37.5rem;
-    height: 3.25rem;
-    background: pink;
-    display: flex;
-    align-items: center;
+.mb-home-container{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+  .mb-home-search{
+    width: 21.875rem;
+    height: 2.5rem;
     background: #FFFFFF;
     border: 0.125rem solid #00A0E9;
     border-radius: 2.5rem;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
   }
-  select::-ms-expand { display: none; }
-  .pc-home-search select{
+  .mb-home-search select{
     border: none;
     background: none;
     outline: none;
@@ -98,67 +69,187 @@
     -webkit-appearance:none;
     background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
     padding-right: 1.25rem;
-    ont-family: PingFangSC-Regular;
-    font-size: 1rem;
-    color: #333333;
-    line-height: 1rem;
-    margin-left: 1.5rem;
-  }
-  .pc-home-search input{
-    width: 25rem;
-    padding-left: 1rem;
-    height: 2rem;
-    outline: none;
-    border: none;
-    font-size: 1rem;
-  }
-  .pc-home-search img{
-    margin-left: 3.5rem;
-  }
-  .pc-home-image{
-    margin-top: 12.5rem;
-  }
-  .pc-home-desc{
     font-family: PingFangSC-Regular;
     font-size: 1rem;
-    color: #666666;
-    line-height: 1rem;
-    margin-top: 1.5rem;
-    display: flex;
+    color: #333333;
+    line-height: 0.875rem;
+    margin-left: 1rem;
+  }
+  .mb-home-search input{
+    border: none;
+    outline: none;
+    width: 25rem;
+    padding-left: 1rem;
+    font-size: 1rem;
+  }
+  .mb-home-search-btn{
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
     justify-content: center;
   }
-  /**/
-  .bottom-image{
+  .mb-home-footer{
     width: 100%;
-    height: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 6.25rem;
+    background: #EBEBEB;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    justify-content: center;
   }
-  @media (max-height:770px) and (max-width: 1100px){
-    .bottom-image{
-      display: flex;
-      margin-top: 6.25rem;
-      width: 1100px;
-      /*position: absolute;*/
-      /*left: 0;*/
-      /*bottom: 0;*/
+  .mb-home-footer-first{
+    font-family: PingFangSC-Regular;
+    font-size: 1.2rem;
+    color: #666666;
+    line-height: 1.2rem;
+  }
+  .mb-home-footer-first span:nth-child(1){
+    margin-right: 2.75rem;
+  }
+  .mb-home-footer-second{
+    font-family: PingFangSC-Regular;
+    font-size: 1rem;
+    color: #999999;
+    text-align: center;
+    line-height: 1rem;
+    margin-top: 1rem;
+  }
+  /*paid*/
+  @media (min-width: 750px) and (max-width: 800px){
+    .mb-home-image{
+      margin-top: 20rem;
+    }
+    .mb-home-search{
+      width: 34.875rem;
+      margin-top: 3rem;
     }
   }
-  @media (max-height:770px) and (min-width: 1100px){
-    .bottom-image{
-      display: flex;
-      margin-top: 6.25rem;
-      width: 100%;
-      /*position: absolute;*/
-      /*left: 0;*/
-      /*bottom: 0;*/
+  @media (min-width: 900px) and (max-width: 1024px){
+    .mb-home-image{
+      margin-top: 14rem;
+    }
+    .mb-home-search{
+      width: 34.875rem;
+      margin-top: 3rem;
     }
   }
-  @media (min-height:770px) and (min-width: 1100px){
-    .bottom-image{
-      /*margin-top: 6.25rem;*/
-      /*width: 1100px;*/
-      position: absolute;
-      left: 0;
-      bottom: 0;
+  /*phone*/
+  @media (min-width: 350px) and (max-width: 450px){
+    .mb-home-image{
+      width: 12.875rem;
+      height: auto;
+      margin-top: 12rem;
+    }
+    .mb-home-search{
+      width: 22rem;
+      height: 2.5rem;
+    }
+    .mb-home-search select{
+      font-size: 0.75rem;
+      padding-right: 1rem;
+    }
+    .mb-home-search input{
+      font-size: 0.75rem;
+      padding-left: 0.25rem;
+      width: 20rem;
+    }
+    .mb-home-search-btn{
+      align-items: center;
+    }
+    .mb-home-search-btn img{
+      width: 1rem;
+      height: 1rem;
+    }
+    .mb-home-footer{
+      height: 4.25rem;
+    }
+    .mb-home-footer-first{
+      font-size: 0.75rem;
+    }
+    .mb-home-footer-second{
+      font-size: 0.75rem;
     }
   }
+  @media (min-width: 460px) and (max-width: 749px){
+
+    .mb-home-footer{
+      height: 4.25rem;
+    }
+    .mb-home-footer-first{
+      font-size: 0.75rem;
+    }
+    .mb-home-footer-second{
+      font-size: 0.75rem;
+    }
+    .mb-home-image{
+      margin-top: 4rem;
+    }
+    .mb-home-search{
+      width: 32rem;
+      height: 2.5rem;
+      margin-top: 3rem;
+    }
+    .mb-home-search select{
+      font-size: 0.75rem;
+      padding-right: 1.5rem;
+    }
+    .mb-home-search input{
+      font-size: 0.75rem;
+      padding-left: 1rem;
+      width: 24rem;
+    }
+    .mb-home-search-btn{
+      align-items: center;
+    }
+    .mb-home-search-btn img{
+      width: 1rem;
+      height: 1rem;
+    }
+    .mb-home-image{
+      width: 17rem;
+    }
+  }
+  @media (min-width: 801px) and (max-width: 820px){
+
+  .mb-home-footer{
+    height: 4.25rem;
+  }
+  .mb-home-footer-first{
+    font-size: 0.75rem;
+  }
+  .mb-home-footer-second{
+    font-size: 0.75rem;
+  }
+  .mb-home-image{
+    margin-top: 4rem;
+  }
+  .mb-home-search{
+    width: 32rem;
+    height: 2.5rem;
+    margin-top: 3rem;
+  }
+  .mb-home-search select{
+    font-size: 0.75rem;
+    padding-right: 1.5rem;
+  }
+  .mb-home-search input{
+    font-size: 0.75rem;
+    padding-left: 1rem;
+    width: 24rem;
+  }
+  .mb-home-search-btn{
+    align-items: center;
+  }
+  .mb-home-search-btn img{
+    width: 1rem;
+    height: 1rem;
+  }
+  .mb-home-image{
+    width: 17rem;
+  }
+}
+
 </style>

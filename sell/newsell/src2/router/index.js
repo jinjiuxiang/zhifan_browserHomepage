@@ -21,12 +21,12 @@ export default new Router({
       component:resolve => require(['@/components/child'],resolve)
     },
     {
-      path: '/home',
+      path: '/',
       name: 'home',
       component:resolve => require(['@/components/home'],resolve)
     },
     {
-      path: '/',
+      path: '/searchList',
       name: 'searchList',
       component:resolve => require(['@/components/searchList'],resolve)
     },

@@ -11,18 +11,12 @@ export default {
 </script>
 
 <style>
-  html,body{
-    font-size: 24px;
-    min-height: 700px;
-    min-width: 900px;
-  }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  font-size: 24px;
   /*margin-top: 60px;*/
 }
 *{
