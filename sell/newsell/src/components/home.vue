@@ -2,14 +2,14 @@
   <div class="mb-home-container">
     <img class="mb-home-image" src="../assets/image/logoDesc.svg" alt="">
     <div class="mb-home-search">
-      <select name="" id="">
+      <select name="" id="" v-model="selectValue">
         <option value="全币种">全币种</option>
         <option value="BTC">BTC</option>
         <option value="BCH">BCH</option>
         <option value="CTC">CTC</option>
       </select>
-      <input type="text" placeholder="区块高度/区块哈希值/交易哈希值/地址哈希值">
-      <div class="mb-home-search-btn">
+      <input type="text" v-model="searchValue" placeholder="区块高度/区块哈希值/交易哈希值/地址哈希值">
+      <div class="mb-home-search-btn" @click="getData">
         <img src="../assets/image/search.svg" alt="">
       </div>
     </div>
@@ -29,6 +29,8 @@
         data(){
           return {
             message:"zhe",
+            selectValue:"全币种",
+            searchValue:""
           }
         },
         methods:{
@@ -37,6 +39,16 @@
           },
           getMz(){
             window.location.href = "https://www.chaindigg.com/disclaimer"
+          },
+          getData(){
+            const self = this;
+            console.log(self.selectValue);
+            console.log(self.searchValue);
+            if(self.searchValue == ""){
+              self.$message.error("查询内容不能为空")
+            } else if(self.searchValue != ""){
+              self.$router.push({name:"msearchList",params:{searchWord:self.searchValue}})
+            }
           }
 
         }

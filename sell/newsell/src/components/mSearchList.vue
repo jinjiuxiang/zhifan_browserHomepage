@@ -8,7 +8,7 @@
           </div>
       </div>
       <div class="m-list-info">
-        <span>“hd73nxj846gnvmxue7h5nrjf8”</span>,为您查询到3个结果
+        <span>“{{params.searchWord}}”</span>,为您查询到3个结果
       </div>
       <div class="m-list-min">
         <mAddress_stencli></mAddress_stencli>
@@ -28,6 +28,11 @@
           mAddress_stencli:mAddressStencli,
           mTransaction_stencli:mTransactionStencli,
           mBlock_stencli:mBlockStencli
+        },
+        data(){
+          return {
+            params:this.$route.params
+          }
         }
     }
 </script>
